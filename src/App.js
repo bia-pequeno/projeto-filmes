@@ -5,6 +5,7 @@ import React, {Component} from "react"
 import styledComponents from "styled-components"
 import { createGlobalStyle } from "styled-components"
 import Header from "./Components/Header"
+import Main from "./Components/Main"
 
 const GlobalStyle = createGlobalStyle`
 *{
@@ -25,7 +26,7 @@ export default class App extends Component{
       <>
       <GlobalStyle/>
       <Header/>
-      
+      <Main/>
       </>
     )
   }
