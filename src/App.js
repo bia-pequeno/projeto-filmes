@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import { BrowserRouter as Router, Link, Routes, Route} from "react-router-dom"
+
+import React, {Component} from "react"
+import styledComponents from "styled-components"
+import { createGlobalStyle } from "styled-components"
+import Header from "./Components/Header"
+
+const GlobalStyle = createGlobalStyle`
+*{
+     margin:0;
+     padding:0;
+     box-sizing:border-box;
+     font-family:  'Raleway', sans-serif;
+   }
+   body{
+     background-color: #000000;
+    // background-color: #EFC7C2;
+   }
+`
+
+export default class App extends Component{
+  render(){
+    return(
+      <>
+      <GlobalStyle/>
+      <Header/>
+      
+      </>
+    )
+  }
 }
-
-export default App;
