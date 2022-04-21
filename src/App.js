@@ -1,6 +1,3 @@
-
-// import { BrowserRouter as Router, Link, Routes, Route} from "react-router-dom"
-
 import React, {Component} from "react"
 import styledComponents from "styled-components"
 import { createGlobalStyle } from "styled-components"
@@ -26,7 +23,7 @@ export default class App extends Component{
       <>
       <GlobalStyle/>
       <Header/>
-      <Main/>
+      {/* <Main/> */}
       </>
     )
   }

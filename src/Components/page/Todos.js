@@ -1,64 +1,46 @@
 import React, {Component} from "react"
-import styled from 'styled-components'
-import { createGlobalStyle } from "styled-components"
-import Carousel from "nuka-carousel"
+import styled from "styled-components"
 
-const GlobalStyle = createGlobalStyle`
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        color:#FFFFFF;
-    }
+const Title = styled.h1`
+   margin-top: 60px;
+   margin-left: 25px;
+  //  border: pink 5px solid;
 `
-const Spotlight = styled.div`
-   margin-top:10vh;
-   margin-left:3vw;
-   margin-bottom:6vw;
+const Container = styled.div`
+  //  border: red 5px solid;
+   margin-top: 30px;
    display: flex;
-   justify-content:center;
-   height: 65vh;
+   flex-wrap:wrap;
    img{
-     width: 23%;
-     display: flex;
-   }
+    width: 30%;
+    display: flex;
+    margin-left: 20px;
+  }
 `
-const Moviesbox = styled.div`
-   margin-top:10vh;
+const BoxMovie = styled.div`
+  //  border: blue 5px solid;
    display:flex;
-   display: inline-block;
+   margin-right: 15%;
+   width: 35%;
    align-items:center;
-   justify-content:center;
-   width:75%;
-   height:35vh;
-   margin-left:3vw;
-   
-   h1{
-     padding: 30px;
-   }
-   p{
-     width: 85%;
-     margin-left:3vw;
-   }
 `
-const H2 = styled.h2`
-   margin-left:3vw;
+const Movie = styled.div`
+// border: red 5px solid;
+ margin-top:5vh;
+ display: flex;
+ display: inline-block;
+ justify-content:center;
+ height: 19vw;
+ h3{
+  padding: 20px;
+}
+ p{
+   width: 35vw;
+   font-size: 0.9vw;
+   margin-left: 20px;
+ }
 `
-const Box = styled.div`
-   margin-left:3vw;
-   margin-right:3vw;
-`
-const Movies = styled.div`
-   margin-top:10vh;
-   margin-bottom:10vh;
-   img{
-    width: 97.8%;
-    height:60.5vh;
-   }
-   h3{
-    margin-top:2vw;
-   }
-`
+
 export default class App extends Component{
   state = {
     listMovies:[
@@ -115,36 +97,23 @@ export default class App extends Component{
     ]
   }
 
-  render(){
-    return(
+    render(){
+      return(
         <>
-        <GlobalStyle/>
-        <Spotlight>
-          <img src={this.state.listMovies[0].poster}/>
-          <Moviesbox>
-            <h4>Visto recentemente</h4>
-            <h1>{this.state.listMovies[0].Title}</h1>
-            <p>{this.state.listMovies[0].Overview}</p>
-          </Moviesbox>
-        </Spotlight>
-        
-
-        <H2>Destaques</H2>
-        <Box>
-          <Carousel
-         wrapAround={true}
-         slidesToShow={5} >
-        
+        <Title>Todos</Title>
+        <Container>
           {this.state.listMovies.map((item) => (
-            <Movies>
-              <img src={item.poster}/>
+          <BoxMovie>
+           <img src={item.poster}/>
+            <Movie>       
               <h3>{item.Title}</h3>
-            </Movies>
+              <p>{item.Overview}</p>
+            </Movie>  
+          </BoxMovie>
           ))}
-          
-        </Carousel>
-        </Box>
+        </Container>
         </>
-    )
+        
+      )
+    }
   }
-}
