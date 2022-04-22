@@ -1,3 +1,4 @@
+import { getMouseEventOptions } from "@testing-library/user-event/dist/utils"
 import React, {Component} from "react"
 import styledComponents from "styled-components"
 import { createGlobalStyle } from "styled-components"
@@ -13,17 +14,17 @@ const GlobalStyle = createGlobalStyle`
    }
    body{
      background-color: #000000;
-    // background-color: #EFC7C2;
-   }
+     color: #FFFFFF;
+  }
 `
 
 export default class App extends Component{
+  
   render(){
     return(
       <>
       <GlobalStyle/>
       <Header/>
-      {/* <Main/> */}
       </>
     )
   }

@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import Todos from "./page/Todos"
-import Início from "./Main"
+import Main from "./Main"
 import styled from "styled-components"
 import { createGlobalStyle } from "styled-components"
 import { BrowserRouter as Router, Link, Routes, Route} from "react-router-dom"
@@ -101,6 +101,17 @@ const Box = styled.div`
      width: 10vw;
    }
 `
+const Movies = styled.div`
+   margin-top:10vh;
+   margin-bottom:10vh;
+   img{
+    width: 97.8%;
+    height:60.5vh;
+   }
+   h3{
+    margin-top:2vw;
+   }
+`
 
 export default class App extends Component{
   state = {
@@ -150,7 +161,7 @@ export default class App extends Component{
   }
   Search = (ev) => {
     let {films} = this.state
-    const displayFilms = films.Title.filter((item) =>{
+    const displayFilms = films.filter((item) =>{
       if (item.toLowerCase().includes(ev.target.value.toLowerCase())){
         return true
       }
@@ -172,7 +183,7 @@ export default class App extends Component{
             <Title>TODOFLIX</Title>
             <Nav>
               <ul>
-                <Link to="inicio"><li>Início</li></Link>
+                <Link to="/"><li>Início</li></Link>
               </ul>
               <details>
                 <summary>Categorias</summary>
@@ -190,7 +201,10 @@ export default class App extends Component{
             <button>Adicionar filme</button>
             <input type="text" placeholder="&#128269; pesquisar" onChange={this.Search}/>
             {this.state.result.map((item) => (
-              <h2>{item.Title}</h2>
+              <Movies>
+              <img src={item.poster}/>
+              <h3>{item.Title}</h3>
+            </Movies>
             ))}
             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png" alt='img of profile'/>
             <img src="https://pngimage.net/wp-content/uploads/2018/06/seta-branca-em-png-1-300x200.png" alt="seta para baixo"/>
@@ -198,7 +212,7 @@ export default class App extends Component{
          </Container>
          <Routes>
            <Route path="Todos" element={<Todos/>}/>
-           <Route path="inicio" element={<Início/>}/>
+           <Route path="/" element={<Main/>}/>
          </Routes>
       </Router>
 
