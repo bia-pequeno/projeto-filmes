@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import styled from "styled-components"
 import Heart from "./Heart.png"
+
 const Title = styled.h1`
    margin-top: 60px;
    margin-left: 25px;
@@ -127,6 +128,20 @@ export default class App extends Component{
       }
     ]
   }
+  // Search = (ev) => {
+  //   let {films} = this.state
+  //   const displayFilms = films.filter((item) =>{
+  //     if (item.toLowerCase().includes(ev.target.value.toLowerCase())){
+  //       return true
+  //     }
+  //   })
+  //   this.setState({
+  //     inputFilms: displayFilms
+  //   })
+  //   if (ev.target.value === ""){
+  //     this.setState({inputFilms: []})
+  //   }
+  // }
   handleClick = () => {
     this.setState({
       favorite: !this.state.films.favorite

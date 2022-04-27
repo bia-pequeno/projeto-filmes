@@ -6,7 +6,8 @@ import { createGlobalStyle } from "styled-components"
 import { BrowserRouter as Router, Link, Routes, Route} from "react-router-dom"
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&family=Montserrat+Alternates:wght@500&family=Montserrat:ital,wght@1,600&family=Raleway:ital,wght@0,500;1,400&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&family=Montserrat+Alternates:wght@500&family=Montserrat:ital,wght@1,600&family=Raleway:ital,wght@0,500;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Frank+Ruhl+Libre:wght@900&family=Montserrat+Alternates:wght@500&family=Montserrat:ital,wght@1,600&family=Raleway:ital,wght@0,500;1,400&display=swap');
 *{
    margin: 0;
    padding: 0;
@@ -29,7 +30,8 @@ const Container = styled.div`
 `
 const Title = styled.h1`
    color: #E71B27;
-   font-family:  'Raleway', sans-serif;
+  //  font-family:  'Raleway', sans-serif;
+  font-family: 'Bebas Neue',Regular;
    &:hover{
     cursor: pointer;
   }
@@ -59,6 +61,12 @@ const Nav = styled.nav`
       width: 15vw;
       flex-direction:column;
       justify-content:space-evenly;
+      p{
+        margin-top: 8px;
+        &:hover{
+          cursor: pointer;
+        }
+      }
   }
   div{
       color:white;
@@ -101,21 +109,10 @@ const Box = styled.div`
      width: 10vw;
    }
 `
-const Movies = styled.div`
-   margin-top:10vh;
-   margin-bottom:10vh;
-   img{
-    width: 97.8%;
-    height:60.5vh;
-   }
-   h3{
-    margin-top:2vw;
-   }
-`
 
 export default class App extends Component{
   state = {
-    films:[
+    listfilms:[
       {
         Title: 'Animais Fantásticos: Os Segredos de Dumbledore',
         poster:'https://br.web.img3.acsta.net/r_1280_720/pictures/21/12/20/18/43/0062398.jpg'
@@ -156,24 +153,8 @@ export default class App extends Component{
         Title: 'Animais Fantásticos: Os Crimes de Grindelwald',
         poster:'https://img.elo7.com.br/product/zoom/2650223/big-poster-filme-animais-fantasticos-grindelwald-l5-90x60-cm-presente-nerd.jpg'
       }
-    ],
-    result: []
+    ]
   }
-  Search = (ev) => {
-    let {films} = this.state
-    const displayFilms = films.filter((item) =>{
-      if (item.toLowerCase().includes(ev.target.value.toLowerCase())){
-        return true
-      }
-    })
-    this.setState({
-      result: displayFilms
-    })
-    if (ev.target.value === ""){
-      this.setState({result: []})
-    }
-  }
-  
   render(){
     return(
       <Router>
@@ -199,13 +180,7 @@ export default class App extends Component{
           </box1>
           <Box>
             <button>Adicionar filme</button>
-            <input type="text" placeholder="&#128269; pesquisar" onChange={this.Search}/>
-            {this.state.result.map((item) => (
-              <Movies>
-              <img src={item.poster}/>
-              <h3>{item.Title}</h3>
-            </Movies>
-            ))}
+            <input type="text" placeholder="&#128269; pesquisar"/>
             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png" alt='img of profile'/>
             <img src="https://pngimage.net/wp-content/uploads/2018/06/seta-branca-em-png-1-300x200.png" alt="seta para baixo"/>
          </Box>

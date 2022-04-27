@@ -51,16 +51,29 @@ const H2 = styled.h2`
 const Box = styled.div`
    margin-left:3vw;
    margin-right:3vw;
+   justify-content:space-evenly;
 `
-const Movies = styled.div`
-   margin-top:10vh;
-   margin-bottom:10vh;
+const Container = styled.div`
+   margin-top:2vw;
+   justify-content:center;
    img{
-    width: 97.8%;
+    width: 80%;
     height:60.5vh;
    }
+`
+const Movies = styled.div`
+   margin-bottom:10vh;
+   display:flex;
+   display: inline-block;
+   align-items:center;
+   width: 100%;
    h3{
-    margin-top:2vw;
+    font-size: 0.8vw;
+    width: 100%;
+   }
+   p{
+    font-size: 1vw;
+    padding-left: 100px;
    }
 `
 export default class App extends Component{
@@ -143,7 +156,6 @@ export default class App extends Component{
       favorite: !this.state.favorite
     })
   }
-
   render(){
     return(
         <>
@@ -162,16 +174,26 @@ export default class App extends Component{
         <H2>Destaques</H2>
         <Box>
           <Carousel
+         adaptiveHeight={true}
          wrapAround={true}
-         slidesToShow={5} 
+         slidesToShow={4}
+         autoplay={true}
+         pauseOnHover={true}
+         renderBottomCenterControls={false}
+         defaultControlsConfig={{
+           nextButtonText: '>' ,
+           prevButtonText: '<'
+          }}
          >
         
           {this.state.listMovies.map((item) => (
-            <Movies>
-              <img src={item.poster}/>
-              <h3>{item.Title}</h3>
-              <p>{item.jaVisto === false ? "Não Visto" : "Já Visto"}</p>
-            </Movies>
+            <Container>
+              <img src={item.poster} alt={item.Title}/>
+             <Movies>
+              {/* <h3>{item.Title}</h3>
+              <p>{item.jaVisto === false ? "Não Visto" : "Já Visto"}</p> */}
+            </Movies> 
+            </Container>
           ))}
           
         </Carousel>
