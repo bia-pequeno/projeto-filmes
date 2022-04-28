@@ -12,6 +12,21 @@ const GlobalStyle = createGlobalStyle`
         color:#FFFFFF;
     }
 `
+const Search = styled.div`
+width: 100%;
+position: relative;
+`
+const Input = styled.input`
+background: #2C2C2C;
+border: solid 1px rgba(255,255,255,0.85);
+border-radius: 4px;
+width: 30%;
+height:40px;
+padding: 7px 14px 7px 15px;
+float:right;
+margin: -2.9%;
+margin-right: 8%;
+`
 const Spotlight = styled.div`
    margin-top:10vh;
    margin-left:3vw;
@@ -149,7 +164,25 @@ export default class App extends Component{
         favorite: true,
         jaVisto: true
       }
-    ]
+    ],
+    listfilter:[]
+  }
+  filtro = (e) => {
+    const {filmes} = this.state
+    if(e.target.value === "") {
+      this.setState({
+        listfilter: filmes
+      })
+      return
+    }
+    const filmeconvert = filmes.filter((item) => {
+      if(item.Title.toLowerCase().includes(e.target.value.toLowerCase())){
+        return true
+      }
+    })
+    this.setState({
+      listfilter: filmeconvert
+    })
   }
   handleClick = () => {
     this.setState({
@@ -159,6 +192,9 @@ export default class App extends Component{
   render(){
     return(
         <>
+        <Search>
+        <Input type="text" onChange={this.filtro} placeholder="&#128269; pesquisar"/>
+        </Search>
         <GlobalStyle/>
         <Spotlight>
           <Poster src={this.state.listMovies[0].poster}/>
@@ -190,8 +226,8 @@ export default class App extends Component{
             <Container>
               <img src={item.poster} alt={item.Title}/>
              <Movies>
-              {/* <h3>{item.Title}</h3>
-              <p>{item.jaVisto === false ? "Não Visto" : "Já Visto"}</p> */}
+              {/* <h3>{item.Title}</h3> */}
+              {/* <p>{item.jaVisto === false ? "Não Visto" : "Já Visto"}</p> */}
             </Movies> 
             </Container>
           ))}

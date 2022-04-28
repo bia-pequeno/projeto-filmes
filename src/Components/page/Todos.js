@@ -52,6 +52,21 @@ const Movie = styled.div`
    text-decoration: bold;
  }
 `
+const Search = styled.div`
+  width: 100%;
+  position: relative;
+`
+const Input = styled.input`
+  background: #2C2C2C;
+  border: solid 1px rgba(255,255,255,0.85);
+  border-radius: 4px;
+  width: 30%;
+  height:40px;
+  padding: 7px 14px 7px 15px;
+  float:right;
+  margin: -2.9%;
+  margin-right: 8%;
+`
 
 export default class App extends Component{
   state = {
@@ -126,22 +141,26 @@ export default class App extends Component{
         favorite: true,
         jaVisto: true
       }
-    ]
+    ],
+    listfilter:[]
   }
-  // Search = (ev) => {
-  //   let {films} = this.state
-  //   const displayFilms = films.filter((item) =>{
-  //     if (item.toLowerCase().includes(ev.target.value.toLowerCase())){
-  //       return true
-  //     }
-  //   })
-  //   this.setState({
-  //     inputFilms: displayFilms
-  //   })
-  //   if (ev.target.value === ""){
-  //     this.setState({inputFilms: []})
-  //   }
-  // }
+  filtro = (e) => {
+    const {films} = this.state
+    if(e.target.value === "") {
+      this.setState({
+        listfilter: films
+      })
+      return
+    }
+    const filmeconvert = films.filter((item) => {
+      if(item.Title.toLowerCase().includes(e.target.value.toLowerCase())){
+        return true
+      }
+    })
+    this.setState({
+      listfilter: filmeconvert
+    })
+  }
   handleClick = () => {
     this.setState({
       favorite: !this.state.films.favorite
@@ -150,9 +169,12 @@ export default class App extends Component{
     render(){
       return(
         <>
+        <Search>
+        <Input type="text" onChange={this.filtro} placeholder="&#128269; pesquisar"/>
+        </Search>
         <Title>Todos</Title>
         <Container>
-          {this.state.films.map((item) => (
+          {this.state.listfilter.map((item) => (
           <BoxMovie>
            <Poster src={item.poster}/>
            <Icon onClick={this.handleClick} style={this.state.films.favorite === false ?{filter:"brightness(0.5)"}: {filter:"drop-shadow(1px 1px 10px rgba(255,255,255,0.5))"}} src={Heart} alt="heart icon"/>

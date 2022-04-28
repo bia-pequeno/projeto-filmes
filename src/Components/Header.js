@@ -75,34 +75,29 @@ const Nav = styled.nav`
     
   }
 `
+const Boxbutton = styled.div`
+  width: 30%;
+  button{
+    float:right;
+    background-color: #E71B27;
+    padding: 0.5vw 0.1vh;
+    width: 35%;
+    border-radius: 5px;
+    &:hover{
+      cursor: pointer;
+    }
+`
 const Box = styled.div`
    display: flex;
    align-items: center;
    width:50%;
    justify-content: space-around;
-   
+   justify-content: flex-end;
    img{
       width:3vw;
       &:hover{
         cursor: pointer;
       }
-   }
-   button{
-     background-color: #E71B27;
-     padding: 0.5vw 0.1vh;
-     width: 20%;
-     border-radius: 5px;
-     &:hover{
-       cursor: pointer;
-     }
-   }
-   input{
-     background: #2C2C2C;
-     border: solid 1px rgba(255,255,255,0.85);
-     border-radius: 4px;
-     width: 55%;
-     height:40px;
-     padding: 7px 14px 7px 15px;
    }
    h2{
      color: white;
@@ -176,11 +171,11 @@ export default class App extends Component{
                    </div>
                    </details>
             </Nav>
-            
           </box1>
-          <Box>
+          <Boxbutton>
             <button>Adicionar filme</button>
-            <input type="text" placeholder="&#128269; pesquisar"/>
+          </Boxbutton>
+          <Box>
             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/84c20033850498.56ba69ac290ea.png" alt='img of profile'/>
             <img src="https://pngimage.net/wp-content/uploads/2018/06/seta-branca-em-png-1-300x200.png" alt="seta para baixo"/>
          </Box>
