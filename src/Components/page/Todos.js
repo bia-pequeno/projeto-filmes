@@ -144,6 +144,16 @@ export default class App extends Component{
     ],
     listfilter:[]
   }
+  async componentDidMount (){
+    this.getMovies()
+  } 
+  getMovies = async () => {
+    this.setState({
+      films:this.state.films,
+      listfilter:this.state.films
+    }
+    )
+  }
   filtro = (e) => {
     const {films} = this.state
     if(e.target.value === "") {
